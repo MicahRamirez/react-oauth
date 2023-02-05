@@ -9,7 +9,13 @@ import { Flows } from './types/enums';
 import AuthorizationFeatures from './components/AuthorizationFeatures';
 
 function App() {
-  const [flow, setFlow] = useState<Flows | null>(null);
+  const { searchParams } = new URL(window.location.href);
+  const isAuthCodeRedirectMode = Boolean(
+    searchParams.get('state') && searchParams.get('code'),
+  );
+  const [flow, setFlow] = useState<Flows | null>(
+    isAuthCodeRedirectMode ? Flows.Authorization : null,
+  );
 
   return (
     <Flex
@@ -36,7 +42,11 @@ function App() {
         </Button>
       )}
       {flow === Flows.SignIn && <SignInFlows />}
-      {flow === Flows.Authorization && <AuthorizationFeatures />}
+      {flow === Flows.Authorization && (
+        <AuthorizationFeatures
+          isAuthCodeRedirectMode={isAuthCodeRedirectMode}
+        />
+      )}
     </Flex>
   );
 }

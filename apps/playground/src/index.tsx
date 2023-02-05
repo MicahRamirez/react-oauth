@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="304531247476-58f940f3b0dgrupg95cdo8b51fspupdv.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="284943917903-uj1augb75j7vsh7h29ho4i60gvdh8066.apps.googleusercontent.com">
       <ChakraProvider>
         <App />
       </ChakraProvider>

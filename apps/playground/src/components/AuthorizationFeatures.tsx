@@ -44,8 +44,14 @@ const authorizationCodeFlowFeatures: Feature[] = [
   { label: 'Refresh token', available: true },
 ];
 
-export default function AuthorizationFeatures() {
-  const [flow, setFlow] = useState<'implict' | 'code' | null>(null);
+export default function AuthorizationFeatures({
+  isAuthCodeRedirectMode,
+}: {
+  isAuthCodeRedirectMode?: boolean;
+}) {
+  const [flow, setFlow] = useState<'implict' | 'code' | null>(
+    isAuthCodeRedirectMode ? 'code' : null,
+  );
   return (
     <>
       {!flow && (
